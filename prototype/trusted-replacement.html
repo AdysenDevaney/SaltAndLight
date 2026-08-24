@@ -107,7 +107,7 @@
     .detail-row svg { flex: 0 0 auto; width: 20px; color: #6b8c7f; margin-top: 1px; }
     .detail-row small { display: block; color: #70857f; font-weight: 650; margin-bottom: 3px; }
     .detail-row strong { font-size: 14px; }
-    .edit-button { width: 100%; margin-top: 18px; padding: 12px; border-radius: 12px; border: 1px solid #cddad4; background: transparent; font-weight: 800; cursor: pointer; }
+    .edit-button { width: 100%; margin-top: 18px; padding: 12px; border-radius: 12px; border: 1px solid #cddad4; background: transparent; text-align: center; font-weight: 800; }
 
     .content-head { display: flex; align-items: end; justify-content: space-between; gap: 20px; margin: 34px 0 16px; }
     .content-head h2 { margin: 0 0 5px; font: 700 31px/1.15 Georgia, serif; }
@@ -115,8 +115,8 @@
     .results-count { white-space: nowrap; color: var(--ink-soft); font-size: 13px; font-weight: 750; }
 
     .filters { display: flex; gap: 9px; overflow-x: auto; padding: 0 1px 18px; scrollbar-width: none; }
-    .filter { cursor: pointer; border: 1px solid #cfdcd5; background: rgba(255,255,255,.7); padding: 10px 14px; border-radius: 999px; font-size: 13px; font-weight: 800; white-space: nowrap; transition: .18s ease; }
-    .filter:hover, .filter.active { color: white; border-color: var(--ink); background: var(--ink); transform: translateY(-1px); }
+    .filter { border: 1px solid #cfdcd5; background: rgba(255,255,255,.7); padding: 10px 14px; border-radius: 999px; font-size: 13px; font-weight: 800; white-space: nowrap; }
+    .filter.active { color: white; border-color: var(--ink); background: var(--ink); }
 
     .sitter-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
     .sitter-card { overflow: hidden; display: flex; flex-direction: column; border-radius: 22px; background: var(--paper); border: 1px solid rgba(23,60,51,.1); box-shadow: 0 10px 32px rgba(23,60,51,.07); transition: .2s ease; }
@@ -256,11 +256,11 @@
         </div>
 
         <aside class="request-card" aria-label="Tonight's care request">
-          <div><h2>Tonight’s care plan</h2><p>What every suggested sitter has agreed they can support.</p></div>
+          <div><h2>Tonight’s care plan</h2><p>What Salt &amp; Light checks against for every available sitter.</p></div>
           <div class="detail-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v3m8-3v3M3 9h18M5 4h14a2 2 0 0 1 2 2v14H3V6a2 2 0 0 1 2-2Z"/></svg><div><small>Care for</small><strong>Micah, age 6 · 4 hours</strong></div></div>
           <div class="detail-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 5h16v14H4zM8 9h8m-8 4h5"/></svg><div><small>Household preferences</small><strong>No screens · Dinner prayer · Bedtime at 8</strong></div></div>
           <div class="detail-row"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3 4 7v5c0 5 3.5 8 8 9 4.5-1 8-4 8-9V7l-8-4Z"/><path d="m9 12 2 2 4-5"/></svg><div><small>Required</small><strong>Background check · CPR &amp; First Aid</strong></div></div>
-          <button class="edit-button" type="button" onclick="flashEdit(this)">Edit care plan</button>
+          <div class="edit-button" aria-label="Care plan status">Care plan ready ✓</div>
         </aside>
       </section>
 
@@ -269,12 +269,11 @@
         <span class="results-count">3 of 12 sitters available</span>
       </div>
 
-      <div class="filters" aria-label="Sitter filters">
-        <button class="filter active" type="button">Best match</button>
-        <button class="filter" type="button">Grace Community</button>
-        <button class="filter" type="button">Known by a friend</button>
-        <button class="filter" type="button">5+ years experience</button>
-        <button class="filter" type="button">Under $25/hr</button>
+      <div class="filters" aria-label="Criteria used for this shortlist">
+        <span class="filter active">Best match</span>
+        <span class="filter">Available tonight</span>
+        <span class="filter">Safety requirements met</span>
+        <span class="filter">Community connections</span>
       </div>
 
       <section class="sitter-grid" aria-label="Available sitters">
@@ -288,8 +287,8 @@
               <div class="signal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V7l8-4 8 4v13M8 11h8M8 15h8"/></svg><span><strong>6 years</strong> verified childcare experience</span></div>
               <div class="signal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 11h10M7 15h6M5 4h14v16H5z"/></svg><span><strong>27 completed bookings</strong> · 8 repeat families</span></div>
             </div>
-            <div class="preference-match"><div class="preference-label"><span>HOUSEHOLD ALIGNMENT</span><span>All 3 matched</span></div><div class="mini-tags"><span class="mini-tag">No screens</span><span class="mini-tag">Dinner prayer</span><span class="mini-tag">Bedtime routine</span></div></div>
-            <div class="availability"><div><small>Tonight’s rate</small><strong>$22/hour</strong></div><button class="view-button" type="button" onclick="openProfile('Sarah J.', 'SJ', '6 years', '27 bookings', '8 families', '$22/hour', 'Grace Community member · Known by 3 families in your circle', '“Sarah brings such calm into our home. Our kids ask when she is coming back.”', 'The Martins · 6 bookings')">View trust profile</button></div>
+            <div class="preference-match"><div class="preference-label"><span>HOUSEHOLD PREFERENCES</span><span>All 3 matched</span></div><div class="mini-tags"><span class="mini-tag">No screens</span><span class="mini-tag">Dinner prayer</span><span class="mini-tag">Bedtime routine</span></div></div>
+            <div class="availability"><div><small>Tonight’s rate</small><strong>$22/hour</strong></div><button class="view-button" type="button" onclick="openProfile('sarah')">View trust profile</button></div>
           </div>
         </article>
 
@@ -302,8 +301,8 @@
               <div class="signal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V7l8-4 8 4v13M8 11h8M8 15h8"/></svg><span><strong>4 years</strong> verified childcare experience</span></div>
               <div class="signal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 11h10M7 15h6M5 4h14v16H5z"/></svg><span><strong>19 completed bookings</strong> · 5 repeat families</span></div>
             </div>
-            <div class="preference-match"><div class="preference-label"><span>HOUSEHOLD ALIGNMENT</span><span>All 3 matched</span></div><div class="mini-tags"><span class="mini-tag">No screens</span><span class="mini-tag">Dinner prayer</span><span class="mini-tag">Bedtime routine</span></div></div>
-            <div class="availability"><div><small>Tonight’s rate</small><strong>$20/hour</strong></div><button class="view-button" type="button" onclick="openProfile('Maya K.', 'MK', '4 years', '19 bookings', '5 families', '$20/hour', 'Recommended by a parent in your circle', '“Maya is prepared, thoughtful, and wonderful with bedtime routines.”', 'Olivia P. · 3 bookings')">View trust profile</button></div>
+            <div class="preference-match"><div class="preference-label"><span>HOUSEHOLD PREFERENCES</span><span>All 3 matched</span></div><div class="mini-tags"><span class="mini-tag">No screens</span><span class="mini-tag">Dinner prayer</span><span class="mini-tag">Bedtime routine</span></div></div>
+            <div class="availability"><div><small>Tonight’s rate</small><strong>$20/hour</strong></div><button class="view-button" type="button" onclick="openProfile('maya')">View trust profile</button></div>
           </div>
         </article>
 
@@ -316,8 +315,8 @@
               <div class="signal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 20V7l8-4 8 4v13M8 11h8M8 15h8"/></svg><span><strong>8 years</strong> verified childcare experience</span></div>
               <div class="signal"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 11h10M7 15h6M5 4h14v16H5z"/></svg><span><strong>52 completed bookings</strong> · 11 repeat families</span></div>
             </div>
-            <div class="preference-match"><div class="preference-label"><span>HOUSEHOLD ALIGNMENT</span><span>2 of 3 matched</span></div><div class="mini-tags"><span class="mini-tag">No screens</span><span class="mini-tag">Bedtime routine</span></div></div>
-            <div class="availability"><div><small>Tonight’s rate</small><strong>$25/hour</strong></div><button class="view-button" type="button" onclick="openProfile('Elena R.', 'ER', '8 years', '52 bookings', '11 families', '$25/hour', 'Northside Church member · 2 shared connections', '“Elena has years of experience, and it shows. She is dependable and kind.”', 'James W. · 4 bookings')">View trust profile</button></div>
+            <div class="preference-match"><div class="preference-label"><span>HOUSEHOLD PREFERENCES</span><span>2 of 3 matched</span></div><div class="mini-tags"><span class="mini-tag">No screens</span><span class="mini-tag">Bedtime routine</span></div></div>
+            <div class="availability"><div><small>Tonight’s rate</small><strong>$25/hour</strong></div><button class="view-button" type="button" onclick="openProfile('elena')">View trust profile</button></div>
           </div>
         </article>
       </section>
@@ -345,32 +344,53 @@
         <section class="drawer-section"><h3>Verified childcare experience</h3><div class="proof"><div class="proof-card"><small>Experience</small><strong id="profileYears">6 years</strong></div><div class="proof-card"><small>Completed care</small><strong id="profileBookings">27 bookings</strong></div><div class="proof-card"><small>Repeat families</small><strong id="profileRepeatFamilies">8 families</strong></div><div class="proof-card"><small>References</small><strong>2 confirmed</strong></div></div></section>
         <section class="drawer-section"><h3>Safety credentials</h3><div class="proof"><div class="proof-card"><small>Background check</small><strong>Clear · May 2026</strong></div><div class="proof-card"><small>CPR &amp; First Aid</small><strong>Current · Red Cross</strong></div></div></section>
         <section class="drawer-section"><h3>Recent parent review</h3><div class="review"><p id="profileReview">“Sarah brings such calm into our home. Our kids ask when she is coming back.”</p><small id="profileReviewer">The Martins · 6 bookings</small></div></section>
-        <section class="drawer-section"><h3>Tonight’s care plan</h3><p>Sarah confirmed she can follow your no-screens rule, join Micah for dinner prayer, and begin his bedtime routine at 8:00 PM.</p></section>
+        <section class="drawer-section"><h3>Tonight’s care plan</h3><p id="profileCarePlan">Sarah confirmed she can follow your no-screens rule, join Micah for dinner prayer, and begin his bedtime routine at 8:00 PM.</p></section>
       </div>
-      <div class="drawer-action"><div><small>6:00–10:00 PM</small><strong id="profileRate">$22/hour</strong></div><button class="request-button" type="button" onclick="sendRequest()">Request this sitter</button></div>
+      <div class="drawer-action"><div><small>6:00–10:00 PM</small><strong id="profileRate">$22/hour</strong></div><button class="request-button" type="button" onclick="sendRequest()">Book for tonight</button></div>
     </aside>
   </div>
 
   <div class="success" id="successModal" role="dialog" aria-modal="true" aria-labelledby="successTitle">
-    <div class="success-card"><div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 12 4 4 8-9"/></svg></div><h2 id="successTitle">Request sent to <span id="successName">Sarah</span></h2><p>They have 10 minutes to confirm. Your other matches stay available until the booking is accepted.</p><button type="button" onclick="resetDemo()">Return to matches</button></div>
+    <div class="success-card"><div class="success-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4"><path d="m6 12 4 4 8-9"/></svg></div><h2 id="successTitle"><span id="successName">Sarah</span> is confirmed</h2><p>You’re covered tonight. Contact details and the care plan have been shared with both of you.</p><button type="button" onclick="resetDemo()">Return to matches</button></div>
   </div>
 
   <div class="demo-note">Prototype · Fictional profiles and sample data</div>
 
   <script>
-    let selectedName = 'Sarah J.';
+    const sitterProfiles = {
+      sarah: {
+        name: 'Sarah J.', initials: 'SJ', years: '6 years', bookings: '27 bookings', repeatFamilies: '8 families', rate: '$22/hour',
+        connection: 'Grace Community member · Known by 3 families in your circle',
+        review: '“Sarah brings such calm into our home. Our kids ask when she is coming back.”', reviewer: 'The Martins · 6 bookings',
+        carePlan: 'Sarah confirmed she can follow your no-screens rule, join Micah for dinner prayer, and begin his bedtime routine at 8:00 PM.'
+      },
+      maya: {
+        name: 'Maya K.', initials: 'MK', years: '4 years', bookings: '19 bookings', repeatFamilies: '5 families', rate: '$20/hour',
+        connection: 'Recommended by a parent in your circle',
+        review: '“Maya is prepared, thoughtful, and wonderful with bedtime routines.”', reviewer: 'Olivia P. · 3 bookings',
+        carePlan: 'Maya confirmed she can follow your no-screens rule, join Micah for dinner prayer, and begin his bedtime routine at 8:00 PM.'
+      },
+      elena: {
+        name: 'Elena R.', initials: 'ER', years: '8 years', bookings: '52 bookings', repeatFamilies: '11 families', rate: '$25/hour',
+        connection: 'Northside Church member · 2 shared connections',
+        review: '“Elena has years of experience, and it shows. She is dependable and kind.”', reviewer: 'James W. · 4 bookings',
+        carePlan: 'Elena confirmed your no-screens rule and 8:00 PM bedtime routine. Dinner prayer has not yet been confirmed.'
+      }
+    };
+    let selectedProfile = sitterProfiles.sarah;
 
-    function openProfile(name, initials, years, bookings, repeatFamilies, rate, connection, review, reviewer) {
-      selectedName = name;
-      document.getElementById('profileName').textContent = name;
-      document.getElementById('profileAvatar').firstChild.textContent = initials;
-      document.getElementById('profileYears').textContent = years;
-      document.getElementById('profileBookings').textContent = bookings;
-      document.getElementById('profileRepeatFamilies').textContent = repeatFamilies;
-      document.getElementById('profileRate').textContent = rate;
-      document.getElementById('profileConnection').textContent = connection;
-      document.getElementById('profileReview').textContent = review;
-      document.getElementById('profileReviewer').textContent = reviewer;
+    function openProfile(profileId) {
+      selectedProfile = sitterProfiles[profileId];
+      document.getElementById('profileName').textContent = selectedProfile.name;
+      document.getElementById('profileAvatar').firstChild.textContent = selectedProfile.initials;
+      document.getElementById('profileYears').textContent = selectedProfile.years;
+      document.getElementById('profileBookings').textContent = selectedProfile.bookings;
+      document.getElementById('profileRepeatFamilies').textContent = selectedProfile.repeatFamilies;
+      document.getElementById('profileRate').textContent = selectedProfile.rate;
+      document.getElementById('profileConnection').textContent = selectedProfile.connection;
+      document.getElementById('profileReview').textContent = selectedProfile.review;
+      document.getElementById('profileReviewer').textContent = selectedProfile.reviewer;
+      document.getElementById('profileCarePlan').textContent = selectedProfile.carePlan;
       document.getElementById('profileBackdrop').classList.add('open');
       document.body.style.overflow = 'hidden';
     }
@@ -385,7 +405,7 @@
     }
 
     function sendRequest() {
-      document.getElementById('successName').textContent = selectedName.split(' ')[0];
+      document.getElementById('successName').textContent = selectedProfile.name.split(' ')[0];
       closeProfile();
       document.getElementById('successModal').classList.add('open');
     }
@@ -393,19 +413,6 @@
     function resetDemo() {
       document.getElementById('successModal').classList.remove('open');
     }
-
-    function flashEdit(button) {
-      const original = button.textContent;
-      button.textContent = 'Care plan saved ✓';
-      setTimeout(() => button.textContent = original, 1400);
-    }
-
-    document.querySelectorAll('.filter').forEach(button => {
-      button.addEventListener('click', () => {
-        document.querySelectorAll('.filter').forEach(item => item.classList.remove('active'));
-        button.classList.add('active');
-      });
-    });
 
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape') {
